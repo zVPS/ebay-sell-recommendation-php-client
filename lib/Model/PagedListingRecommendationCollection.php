@@ -1,11 +1,11 @@
 <?php
 /**
- * ListingRecommendation
+ * PagedListingRecommendationCollection
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Recommendation\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Recommendation\ObjectSerializer;
 
 /**
- * ListingRecommendation Class Doc Comment
+ * PagedListingRecommendationCollection Class Doc Comment
  *
  * @category Class
- * @description A complex type that contains the ID of an actively listed item and a set of related listing recommendations. The recommendations contain information the seller can use to optimize their listing configurations.
- * @package  Ebay\Sell
+ * @description The high-level object used to return a set of Promoted Listings ad recommendations.
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSerializable
+class PagedListingRecommendationCollection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListingRecommendation';
+    protected static $openAPIModelName = 'PagedListingRecommendationCollection';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,13 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'listing_id' => 'string',
-        'marketing' => '\Ebay\Sell\Recommendation\Model\MarketingRecommendation'
+        'href' => 'string',
+        'limit' => 'int',
+        'listing_recommendations' => '\Ebay\Sell\Recommendation\Model\ListingRecommendation[]',
+        'next' => 'string',
+        'offset' => 'int',
+        'prev' => 'string',
+        'total' => 'int'
     ];
 
     /**
@@ -72,8 +77,13 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'listing_id' => null,
-        'marketing' => null
+        'href' => null,
+        'limit' => null,
+        'listing_recommendations' => null,
+        'next' => null,
+        'offset' => null,
+        'prev' => null,
+        'total' => null
     ];
 
     /**
@@ -103,8 +113,13 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'listing_id' => 'listingId',
-        'marketing' => 'marketing'
+        'href' => 'href',
+        'limit' => 'limit',
+        'listing_recommendations' => 'listingRecommendations',
+        'next' => 'next',
+        'offset' => 'offset',
+        'prev' => 'prev',
+        'total' => 'total'
     ];
 
     /**
@@ -113,8 +128,13 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'listing_id' => 'setListingId',
-        'marketing' => 'setMarketing'
+        'href' => 'setHref',
+        'limit' => 'setLimit',
+        'listing_recommendations' => 'setListingRecommendations',
+        'next' => 'setNext',
+        'offset' => 'setOffset',
+        'prev' => 'setPrev',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -123,8 +143,13 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'listing_id' => 'getListingId',
-        'marketing' => 'getMarketing'
+        'href' => 'getHref',
+        'limit' => 'getLimit',
+        'listing_recommendations' => 'getListingRecommendations',
+        'next' => 'getNext',
+        'offset' => 'getOffset',
+        'prev' => 'getPrev',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -184,8 +209,13 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['listing_id'] = isset($data['listing_id']) ? $data['listing_id'] : null;
-        $this->container['marketing'] = isset($data['marketing']) ? $data['marketing'] : null;
+        $this->container['href'] = $data['href'] ?? null;
+        $this->container['limit'] = $data['limit'] ?? null;
+        $this->container['listing_recommendations'] = $data['listing_recommendations'] ?? null;
+        $this->container['next'] = $data['next'] ?? null;
+        $this->container['offset'] = $data['offset'] ?? null;
+        $this->container['prev'] = $data['prev'] ?? null;
+        $this->container['total'] = $data['total'] ?? null;
     }
 
     /**
@@ -213,49 +243,169 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets listing_id
+     * Gets href
      *
      * @return string|null
      */
-    public function getListingId()
+    public function getHref()
     {
-        return $this->container['listing_id'];
+        return $this->container['href'];
     }
 
     /**
-     * Sets listing_id
+     * Sets href
      *
-     * @param string|null $listing_id An ID that identifies the active listing associated with the eBay recommendations.
+     * @param string|null $href The URI of the current page of results from the result set.
      *
      * @return self
      */
-    public function setListingId($listing_id)
+    public function setHref($href)
     {
-        $this->container['listing_id'] = $listing_id;
+        $this->container['href'] = $href;
 
         return $this;
     }
 
     /**
-     * Gets marketing
+     * Gets limit
      *
-     * @return \Ebay\Sell\Recommendation\Model\MarketingRecommendation|null
+     * @return int|null
      */
-    public function getMarketing()
+    public function getLimit()
     {
-        return $this->container['marketing'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets marketing
+     * Sets limit
      *
-     * @param \Ebay\Sell\Recommendation\Model\MarketingRecommendation|null $marketing marketing
+     * @param int|null $limit The number of items returned on a single page from the result set. This value can be set in the request with the limit query parameter.
      *
      * @return self
      */
-    public function setMarketing($marketing)
+    public function setLimit($limit)
     {
-        $this->container['marketing'] = $marketing;
+        $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets listing_recommendations
+     *
+     * @return \Ebay\Sell\Recommendation\Model\ListingRecommendation[]|null
+     */
+    public function getListingRecommendations()
+    {
+        return $this->container['listing_recommendations'];
+    }
+
+    /**
+     * Sets listing_recommendations
+     *
+     * @param \Ebay\Sell\Recommendation\Model\ListingRecommendation[]|null $listing_recommendations Returns a list of listingRecommendations, where each element in the list offers recommendations for the associated listingId. Which elements are returned depend on how you structure the request. For example, if you request recommendations for all of a sellers listings (by leaving the request payload empty), ad recommendations are returned only for those listings where promoteWithAd is set to RECOMMENDED.
+     *
+     * @return self
+     */
+    public function setListingRecommendations($listing_recommendations)
+    {
+        $this->container['listing_recommendations'] = $listing_recommendations;
+
+        return $this;
+    }
+
+    /**
+     * Gets next
+     *
+     * @return string|null
+     */
+    public function getNext()
+    {
+        return $this->container['next'];
+    }
+
+    /**
+     * Sets next
+     *
+     * @param string|null $next The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. Max length: 2048
+     *
+     * @return self
+     */
+    public function setNext($next)
+    {
+        $this->container['next'] = $next;
+
+        return $this;
+    }
+
+    /**
+     * Gets offset
+     *
+     * @return int|null
+     */
+    public function getOffset()
+    {
+        return $this->container['offset'];
+    }
+
+    /**
+     * Sets offset
+     *
+     * @param int|null $offset The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0.
+     *
+     * @return self
+     */
+    public function setOffset($offset)
+    {
+        $this->container['offset'] = $offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets prev
+     *
+     * @return string|null
+     */
+    public function getPrev()
+    {
+        return $this->container['prev'];
+    }
+
+    /**
+     * Sets prev
+     *
+     * @param string|null $prev The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. Max length: 2048
+     *
+     * @return self
+     */
+    public function setPrev($prev)
+    {
+        $this->container['prev'] = $prev;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return int|null
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     *
+     * @param int|null $total The total number of items retrieved in the result set. If no items are found, this field is returned with a value of 0.
+     *
+     * @return self
+     */
+    public function setTotal($total)
+    {
+        $this->container['total'] = $total;
 
         return $this;
     }
@@ -280,7 +430,7 @@ class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

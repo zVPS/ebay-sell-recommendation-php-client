@@ -1,11 +1,11 @@
 <?php
 /**
- * Ad
+ * ListingRecommendation
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Recommendation\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Recommendation\ObjectSerializer;
 
 /**
- * Ad Class Doc Comment
+ * ListingRecommendation Class Doc Comment
  *
  * @category Class
- * @description A complex type that contains recommendations and information on how to configure Promoted Listings ad campaigns.
- * @package  Ebay\Sell
+ * @description A complex type that contains the ID of an actively listed item and a set of related listing recommendations. The recommendations contain information the seller can use to optimize their listing configurations.
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
+class ListingRecommendation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Ad';
+    protected static $openAPIModelName = 'ListingRecommendation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,8 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bid_percentages' => '\Ebay\Sell\Recommendation\Model\BidPercentages[]',
-        'promote_with_ad' => 'string'
+        'listing_id' => 'string',
+        'marketing' => '\Ebay\Sell\Recommendation\Model\MarketingRecommendation'
     ];
 
     /**
@@ -72,8 +72,8 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bid_percentages' => null,
-        'promote_with_ad' => null
+        'listing_id' => null,
+        'marketing' => null
     ];
 
     /**
@@ -103,8 +103,8 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'bid_percentages' => 'bidPercentages',
-        'promote_with_ad' => 'promoteWithAd'
+        'listing_id' => 'listingId',
+        'marketing' => 'marketing'
     ];
 
     /**
@@ -113,8 +113,8 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'bid_percentages' => 'setBidPercentages',
-        'promote_with_ad' => 'setPromoteWithAd'
+        'listing_id' => 'setListingId',
+        'marketing' => 'setMarketing'
     ];
 
     /**
@@ -123,8 +123,8 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'bid_percentages' => 'getBidPercentages',
-        'promote_with_ad' => 'getPromoteWithAd'
+        'listing_id' => 'getListingId',
+        'marketing' => 'getMarketing'
     ];
 
     /**
@@ -184,8 +184,8 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['bid_percentages'] = isset($data['bid_percentages']) ? $data['bid_percentages'] : null;
-        $this->container['promote_with_ad'] = isset($data['promote_with_ad']) ? $data['promote_with_ad'] : null;
+        $this->container['listing_id'] = $data['listing_id'] ?? null;
+        $this->container['marketing'] = $data['marketing'] ?? null;
     }
 
     /**
@@ -213,49 +213,49 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets bid_percentages
+     * Gets listing_id
      *
-     * @return \Ebay\Sell\Recommendation\Model\BidPercentages[]|null
+     * @return string|null
      */
-    public function getBidPercentages()
+    public function getListingId()
     {
-        return $this->container['bid_percentages'];
+        return $this->container['listing_id'];
     }
 
     /**
-     * Sets bid_percentages
+     * Sets listing_id
      *
-     * @param \Ebay\Sell\Recommendation\Model\BidPercentages[]|null $bid_percentages This field returns information that you can use to configure the bidPercentage field in a Promoted Listings campaign. Note: Currently, ITEM and TRENDING are the only supported bid percentage types. The ITEM suggested bid percentages are tailored to each of your items and are designed to help you stay competitive while finding an optimal balance between performance and cost. The recommendations are calculated based on a variety of factors that may include item attributes, seasonality, past performance, and current competition for each of your listings. The TRENDING suggested bid percentages are calculated by reviewing the category level average ad rates in the marketplace. Setting the bidPercentage of your ad campaign based on these rate recommendations will help the items in the campaign be competitive with other items in the marketplace by improving their chances of being displayed more often in the marketplace.
+     * @param string|null $listing_id An ID that identifies the active listing associated with the eBay recommendations.
      *
      * @return self
      */
-    public function setBidPercentages($bid_percentages)
+    public function setListingId($listing_id)
     {
-        $this->container['bid_percentages'] = $bid_percentages;
+        $this->container['listing_id'] = $listing_id;
 
         return $this;
     }
 
     /**
-     * Gets promote_with_ad
+     * Gets marketing
      *
-     * @return string|null
+     * @return \Ebay\Sell\Recommendation\Model\MarketingRecommendation|null
      */
-    public function getPromoteWithAd()
+    public function getMarketing()
     {
-        return $this->container['promote_with_ad'];
+        return $this->container['marketing'];
     }
 
     /**
-     * Sets promote_with_ad
+     * Sets marketing
      *
-     * @param string|null $promote_with_ad An enum whose values describe whether or not eBay recommends you place the associated listing in a Promoted Listings ad campaign. IDs deemed RECOMMENDED by eBay are the listings with the highest potential of benefiting from being promoted. The recommendation calculation is based on marketplace trends, like buyer demand and the competition in the item&rsquo;s category. Note: A promoteWithAd value cannot be calculated for listings that are part of Promoted Listings campaigns. Because of this, if you call findListingRecommendations with a specific set of listing IDs, the promoteWithAd field is not returned for any of the listings that are involved in a promotion. However, as long as they are eligible, the trending bidPercentage is returned for all specified listings, even if they are part of an ad campaign. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/recommendation/types/api:PromoteWithAd'>eBay API documentation</a>
+     * @param \Ebay\Sell\Recommendation\Model\MarketingRecommendation|null $marketing marketing
      *
      * @return self
      */
-    public function setPromoteWithAd($promote_with_ad)
+    public function setMarketing($marketing)
     {
-        $this->container['promote_with_ad'] = $promote_with_ad;
+        $this->container['marketing'] = $marketing;
 
         return $this;
     }
@@ -280,7 +280,7 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

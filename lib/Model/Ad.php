@@ -1,11 +1,11 @@
 <?php
 /**
- * PagedListingRecommendationCollection
+ * Ad
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Recommendation\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Recommendation\ObjectSerializer;
 
 /**
- * PagedListingRecommendationCollection Class Doc Comment
+ * Ad Class Doc Comment
  *
  * @category Class
- * @description The high-level object used to return a set of Promoted Listings ad recommendations.
- * @package  Ebay\Sell
+ * @description A complex type that contains recommendations and information on how to configure Promoted Listings ad campaigns.
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class PagedListingRecommendationCollection implements ModelInterface, ArrayAccess, \JsonSerializable
+class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'PagedListingRecommendationCollection';
+    protected static $openAPIModelName = 'Ad';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,13 +60,8 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'href' => 'string',
-        'limit' => 'int',
-        'listing_recommendations' => '\Ebay\Sell\Recommendation\Model\ListingRecommendation[]',
-        'next' => 'string',
-        'offset' => 'int',
-        'prev' => 'string',
-        'total' => 'int'
+        'bid_percentages' => '\Ebay\Sell\Recommendation\Model\BidPercentages[]',
+        'promote_with_ad' => 'string'
     ];
 
     /**
@@ -77,13 +72,8 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'href' => null,
-        'limit' => null,
-        'listing_recommendations' => null,
-        'next' => null,
-        'offset' => null,
-        'prev' => null,
-        'total' => null
+        'bid_percentages' => null,
+        'promote_with_ad' => null
     ];
 
     /**
@@ -113,13 +103,8 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $attributeMap = [
-        'href' => 'href',
-        'limit' => 'limit',
-        'listing_recommendations' => 'listingRecommendations',
-        'next' => 'next',
-        'offset' => 'offset',
-        'prev' => 'prev',
-        'total' => 'total'
+        'bid_percentages' => 'bidPercentages',
+        'promote_with_ad' => 'promoteWithAd'
     ];
 
     /**
@@ -128,13 +113,8 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $setters = [
-        'href' => 'setHref',
-        'limit' => 'setLimit',
-        'listing_recommendations' => 'setListingRecommendations',
-        'next' => 'setNext',
-        'offset' => 'setOffset',
-        'prev' => 'setPrev',
-        'total' => 'setTotal'
+        'bid_percentages' => 'setBidPercentages',
+        'promote_with_ad' => 'setPromoteWithAd'
     ];
 
     /**
@@ -143,13 +123,8 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
      * @var string[]
      */
     protected static $getters = [
-        'href' => 'getHref',
-        'limit' => 'getLimit',
-        'listing_recommendations' => 'getListingRecommendations',
-        'next' => 'getNext',
-        'offset' => 'getOffset',
-        'prev' => 'getPrev',
-        'total' => 'getTotal'
+        'bid_percentages' => 'getBidPercentages',
+        'promote_with_ad' => 'getPromoteWithAd'
     ];
 
     /**
@@ -209,13 +184,8 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
-        $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
-        $this->container['listing_recommendations'] = isset($data['listing_recommendations']) ? $data['listing_recommendations'] : null;
-        $this->container['next'] = isset($data['next']) ? $data['next'] : null;
-        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
-        $this->container['prev'] = isset($data['prev']) ? $data['prev'] : null;
-        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
+        $this->container['bid_percentages'] = $data['bid_percentages'] ?? null;
+        $this->container['promote_with_ad'] = $data['promote_with_ad'] ?? null;
     }
 
     /**
@@ -243,169 +213,49 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
 
 
     /**
-     * Gets href
+     * Gets bid_percentages
+     *
+     * @return \Ebay\Sell\Recommendation\Model\BidPercentages[]|null
+     */
+    public function getBidPercentages()
+    {
+        return $this->container['bid_percentages'];
+    }
+
+    /**
+     * Sets bid_percentages
+     *
+     * @param \Ebay\Sell\Recommendation\Model\BidPercentages[]|null $bid_percentages This field returns information that you can use to configure the bidPercentage field in a Promoted Listings campaign. Note: Currently, ITEM and TRENDING are the only supported bid percentage types. The ITEM suggested bid percentages are tailored to each of your items and are designed to help you stay competitive while finding an optimal balance between performance and cost. The recommendations are calculated based on a variety of factors that may include item attributes, seasonality, past performance, and current competition for each of your listings. The TRENDING suggested bid percentages are calculated by reviewing the category level average ad rates in the marketplace. Setting the bidPercentage of your ad campaign based on these rate recommendations will help the items in the campaign be competitive with other items in the marketplace by improving their chances of being displayed more often in the marketplace.
+     *
+     * @return self
+     */
+    public function setBidPercentages($bid_percentages)
+    {
+        $this->container['bid_percentages'] = $bid_percentages;
+
+        return $this;
+    }
+
+    /**
+     * Gets promote_with_ad
      *
      * @return string|null
      */
-    public function getHref()
+    public function getPromoteWithAd()
     {
-        return $this->container['href'];
+        return $this->container['promote_with_ad'];
     }
 
     /**
-     * Sets href
+     * Sets promote_with_ad
      *
-     * @param string|null $href The URI of the current page of results from the result set.
+     * @param string|null $promote_with_ad An enum whose values describe whether or not eBay recommends you place the associated listing in a Promoted Listings ad campaign. IDs deemed RECOMMENDED by eBay are the listings with the highest potential of benefiting from being promoted. The recommendation calculation is based on marketplace trends, like buyer demand and the competition in the item&rsquo;s category. Note: A promoteWithAd value cannot be calculated for listings that are part of Promoted Listings campaigns. Because of this, if you call findListingRecommendations with a specific set of listing IDs, the promoteWithAd field is not returned for any of the listings that are involved in a promotion. However, as long as they are eligible, the trending bidPercentage is returned for all specified listings, even if they are part of an ad campaign. For implementation help, refer to <a href='https://developer.ebay.com/api-docs/sell/recommendation/types/api:PromoteWithAd'>eBay API documentation</a>
      *
      * @return self
      */
-    public function setHref($href)
+    public function setPromoteWithAd($promote_with_ad)
     {
-        $this->container['href'] = $href;
-
-        return $this;
-    }
-
-    /**
-     * Gets limit
-     *
-     * @return int|null
-     */
-    public function getLimit()
-    {
-        return $this->container['limit'];
-    }
-
-    /**
-     * Sets limit
-     *
-     * @param int|null $limit The number of items returned on a single page from the result set. This value can be set in the request with the limit query parameter.
-     *
-     * @return self
-     */
-    public function setLimit($limit)
-    {
-        $this->container['limit'] = $limit;
-
-        return $this;
-    }
-
-    /**
-     * Gets listing_recommendations
-     *
-     * @return \Ebay\Sell\Recommendation\Model\ListingRecommendation[]|null
-     */
-    public function getListingRecommendations()
-    {
-        return $this->container['listing_recommendations'];
-    }
-
-    /**
-     * Sets listing_recommendations
-     *
-     * @param \Ebay\Sell\Recommendation\Model\ListingRecommendation[]|null $listing_recommendations Returns a list of listingRecommendations, where each element in the list offers recommendations for the associated listingId. Which elements are returned depend on how you structure the request. For example, if you request recommendations for all of a sellers listings (by leaving the request payload empty), ad recommendations are returned only for those listings where promoteWithAd is set to RECOMMENDED.
-     *
-     * @return self
-     */
-    public function setListingRecommendations($listing_recommendations)
-    {
-        $this->container['listing_recommendations'] = $listing_recommendations;
-
-        return $this;
-    }
-
-    /**
-     * Gets next
-     *
-     * @return string|null
-     */
-    public function getNext()
-    {
-        return $this->container['next'];
-    }
-
-    /**
-     * Sets next
-     *
-     * @param string|null $next The URI for the following page of results. This value is returned only if there is an additional page of results to display from the result set. Max length: 2048
-     *
-     * @return self
-     */
-    public function setNext($next)
-    {
-        $this->container['next'] = $next;
-
-        return $this;
-    }
-
-    /**
-     * Gets offset
-     *
-     * @return int|null
-     */
-    public function getOffset()
-    {
-        return $this->container['offset'];
-    }
-
-    /**
-     * Sets offset
-     *
-     * @param int|null $offset The number of results skipped in the result set before listing the first returned result. This value can be set in the request with the offset query parameter. Note: The items in a paginated result set use a zero-based list where the first item in the list has an offset of 0.
-     *
-     * @return self
-     */
-    public function setOffset($offset)
-    {
-        $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets prev
-     *
-     * @return string|null
-     */
-    public function getPrev()
-    {
-        return $this->container['prev'];
-    }
-
-    /**
-     * Sets prev
-     *
-     * @param string|null $prev The URI for the preceding page of results. This value is returned only if there is a previous page of results to display from the result set. Max length: 2048
-     *
-     * @return self
-     */
-    public function setPrev($prev)
-    {
-        $this->container['prev'] = $prev;
-
-        return $this;
-    }
-
-    /**
-     * Gets total
-     *
-     * @return int|null
-     */
-    public function getTotal()
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     *
-     * @param int|null $total The total number of items retrieved in the result set. If no items are found, this field is returned with a value of 0.
-     *
-     * @return self
-     */
-    public function setTotal($total)
-    {
-        $this->container['total'] = $total;
+        $this->container['promote_with_ad'] = $promote_with_ad;
 
         return $this;
     }
@@ -430,7 +280,7 @@ class PagedListingRecommendationCollection implements ModelInterface, ArrayAcces
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**

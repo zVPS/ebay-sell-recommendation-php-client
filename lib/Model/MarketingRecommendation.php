@@ -1,11 +1,11 @@
 <?php
 /**
- * FindListingRecommendationRequest
+ * MarketingRecommendation
  *
  * PHP version 7.2
  *
  * @category Class
- * @package  Ebay\Sell
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,30 +29,30 @@
 namespace Ebay\Sell\Recommendation\Model;
 
 use \ArrayAccess;
-use \Ebay\Sell\ObjectSerializer;
+use \Ebay\Sell\Recommendation\ObjectSerializer;
 
 /**
- * FindListingRecommendationRequest Class Doc Comment
+ * MarketingRecommendation Class Doc Comment
  *
  * @category Class
- * @description An list of listing ID values for which you want Promoted Listings ad configuration information.
- * @package  Ebay\Sell
+ * @description A complex type that contains information about how a seller can improve their listing configurations. The &lt;code&gt;AD&lt;/code&gt; object contains Promoted Listings recommendations and information, which the seller can use to improve buyer conversions. The response can also contain an optional message about the returned data.
+ * @package  Ebay\Sell\Recommendation
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class MarketingRecommendation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'FindListingRecommendationRequest';
+    protected static $openAPIModelName = 'MarketingRecommendation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,8 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'listing_ids' => 'string[]'
+        'ad' => '\Ebay\Sell\Recommendation\Model\Ad',
+        'message' => 'string'
     ];
 
     /**
@@ -71,7 +72,8 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'listing_ids' => null
+        'ad' => null,
+        'message' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'listing_ids' => 'listingIds'
+        'ad' => 'ad',
+        'message' => 'message'
     ];
 
     /**
@@ -110,7 +113,8 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'listing_ids' => 'setListingIds'
+        'ad' => 'setAd',
+        'message' => 'setMessage'
     ];
 
     /**
@@ -119,7 +123,8 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'listing_ids' => 'getListingIds'
+        'ad' => 'getAd',
+        'message' => 'getMessage'
     ];
 
     /**
@@ -179,7 +184,8 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
      */
     public function __construct(array $data = null)
     {
-        $this->container['listing_ids'] = isset($data['listing_ids']) ? $data['listing_ids'] : null;
+        $this->container['ad'] = $data['ad'] ?? null;
+        $this->container['message'] = $data['message'] ?? null;
     }
 
     /**
@@ -207,25 +213,49 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets listing_ids
+     * Gets ad
      *
-     * @return string[]|null
+     * @return \Ebay\Sell\Recommendation\Model\Ad|null
      */
-    public function getListingIds()
+    public function getAd()
     {
-        return $this->container['listing_ids'];
+        return $this->container['ad'];
     }
 
     /**
-     * Sets listing_ids
+     * Sets ad
      *
-     * @param string[]|null $listing_ids A comma-separated list of listing IDs for which you want Promoted Listings ad configuration information. Currently, this method accepts only listingId values from the Trading API. Max: 500 listing IDs
+     * @param \Ebay\Sell\Recommendation\Model\Ad|null $ad ad
      *
      * @return self
      */
-    public function setListingIds($listing_ids)
+    public function setAd($ad)
     {
-        $this->container['listing_ids'] = $listing_ids;
+        $this->container['ad'] = $ad;
+
+        return $this;
+    }
+
+    /**
+     * Gets message
+     *
+     * @return string|null
+     */
+    public function getMessage()
+    {
+        return $this->container['message'];
+    }
+
+    /**
+     * Sets message
+     *
+     * @param string|null $message A message that can conditionally accompany the listing information.
+     *
+     * @return self
+     */
+    public function setMessage($message)
+    {
+        $this->container['message'] = $message;
 
         return $this;
     }
@@ -250,7 +280,7 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
