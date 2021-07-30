@@ -45,7 +45,7 @@ use \Ebay\Sell\Recommendation\ObjectSerializer;
  */
 class MarketingRecommendation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -184,8 +184,8 @@ class MarketingRecommendation implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->container['ad'] = $data['ad'] ?? null;
-        $this->container['message'] = $data['message'] ?? null;
+        $this->container['ad'] = isset($data['ad']) ? $data['ad'] : null;
+        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
     }
 
     /**
@@ -280,7 +280,7 @@ class MarketingRecommendation implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

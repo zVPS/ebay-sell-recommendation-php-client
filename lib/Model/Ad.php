@@ -45,7 +45,7 @@ use \Ebay\Sell\Recommendation\ObjectSerializer;
  */
 class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -184,8 +184,8 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['bid_percentages'] = $data['bid_percentages'] ?? null;
-        $this->container['promote_with_ad'] = $data['promote_with_ad'] ?? null;
+        $this->container['bid_percentages'] = isset($data['bid_percentages']) ? $data['bid_percentages'] : null;
+        $this->container['promote_with_ad'] = isset($data['promote_with_ad']) ? $data['promote_with_ad'] : null;
     }
 
     /**
@@ -280,7 +280,7 @@ class Ad implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**

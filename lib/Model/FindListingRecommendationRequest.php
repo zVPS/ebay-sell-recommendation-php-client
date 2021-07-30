@@ -45,7 +45,7 @@ use \Ebay\Sell\Recommendation\ObjectSerializer;
  */
 class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -179,7 +179,7 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
      */
     public function __construct(array $data = null)
     {
-        $this->container['listing_ids'] = $data['listing_ids'] ?? null;
+        $this->container['listing_ids'] = isset($data['listing_ids']) ? $data['listing_ids'] : null;
     }
 
     /**
@@ -250,7 +250,7 @@ class FindListingRecommendationRequest implements ModelInterface, ArrayAccess, \
      */
     public function offsetGet($offset)
     {
-        return $this->container[$offset] ?? null;
+        return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
 
     /**
